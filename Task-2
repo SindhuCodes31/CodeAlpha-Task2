@@ -1,0 +1,70 @@
+import java.util.Scanner;
+public class TravelItineraryPlanner {
+    //method to display welcome message
+    public static void displayWelcomeMessage(){
+        System.out.println("Welcome to the Travel Itinerary Planner!");
+        System.out.println("Plan Your Trip With Destination, Dates, Preferences, Budgets");
+        System.out.println("__________________________");
+
+    }
+    //Method to caluclate the totalBudget
+    public static double CalclateTotalBudget( double[] expenses){
+        double total=0;
+        for(int i=0;i<expenses.length;i++){
+            total=total+expenses[i];
+        }
+        return total;
+    }
+    //method to get details of each destination
+    public static void getDestinationDetails(Scanner sc, String[] destinations, String[] dates, String[] Preferences, double[] budgets, int numDestinations) {
+        for (int i = 0; i < numDestinations; i++) {
+            System.out.println("\n Destination" + (i + 1) + ":");
+            System.out.println("Enter the name of the Destination:");
+            destinations[i] = sc.nextLine();
+            System.out.println("Enter the date of visit(eg:2024-12-30)");
+            dates[i] = sc.nextLine();
+            System.out.println("Enter Your Preferences for this destination:");
+            Preferences[i] = sc.nextLine();
+            System.out.println("Enter the estimated budgets for this destinations");
+            budgets[i] = sc.nextDouble();
+            sc.nextLine();
+
+        }
+    }
+        //method to display the Itinerary od=f the user
+        public static void displayItinerary(String[] destinations, String[] dates, String[] Preferences, double[] budgets, int numDestinations, double totalBudget){
+            System.out.println("\n Your TravelItinerary:");
+            System.out.println("___________________________");
+            for(int i=0;i<numDestinations;i++){
+                System.out.println((i+1)+"Destinations:"+destinations[i]);
+
+                System.out.println("Dates:"+dates[i]);
+                System.out.println("Preferences:"+Preferences[i]);
+                System.out.println("________________________--");
+                System.out.println("Total Estimated Budget :"+totalBudget);
+
+            }
+
+
+
+            }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        displayWelcomeMessage();
+        System.out.println("Enter the NUmber of Destinations You Want to Visit:");
+        int numDestinations=sc.nextInt();
+        sc.nextLine();
+        String[] destination= new String[numDestinations];
+        String[] dates= new String[numDestinations];
+        String[] Preferences= new String[numDestinations];
+        double[] budget=new double[numDestinations];
+        getDestinationDetails(sc, destination, dates, Preferences,budget,numDestinations);
+        double totalBudget=CalclateTotalBudget(budget);
+        displayItinerary(destination,dates,Preferences,budget,numDestinations,totalBudget);
+        System.out.println("Thank you for using the planner!");
+        sc.close();
+
+            }
+
+
+        }
